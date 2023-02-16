@@ -9,8 +9,8 @@ public class FirstSetting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(enemy);
-        Instantiate(player);
+        //Instantiate(enemy);
+        //Instantiate(player);
     }
 
     // Update is called once per frame

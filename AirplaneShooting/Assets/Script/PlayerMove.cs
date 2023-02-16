@@ -6,6 +6,9 @@ public class PlayerMove : MonoBehaviour
 {
     public GameObject Player;
     public float MoveSpeed = 0.3f;
+
+    Vector3 m_moveLimit = new Vector3(17.6f, 0, 36.2f);
+    //Vector2 m_moveLimity = new Vector2(0,36.29f);
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +19,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         PlayerInput();
+        transform.localPosition = ClampPosition(transform.localPosition);
     }
 
     void PlayerInput()
@@ -36,6 +40,17 @@ public class PlayerMove : MonoBehaviour
         {
             transform.position += new Vector3(0,0,-MoveSpeed);
         }
+    }
+
+    public Vector3 ClampPosition(Vector3 position)
+    {
+        return new Vector3
+        (
+            //좌우로 움직이는 이동범위 Mathf.Clamp(value, min, max)
+            Mathf.Clamp(position.x, -m_moveLimit.x, m_moveLimit.x),
+            0f,
+            Mathf.Clamp(position.z, -m_moveLimit.z, m_moveLimit.z)
+        );
     }
 
 }
